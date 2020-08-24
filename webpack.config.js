@@ -8,5 +8,18 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"), // string
         filename: "bundle.js"
+    },
+    module: {
+        rules: [
+            {
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        plugins: ["@babel/plugin-transform-modules-commonjs"]
+                    }
+                },
+                test: "/\.test.js/$"
+            }
+        ]
     }
 };
