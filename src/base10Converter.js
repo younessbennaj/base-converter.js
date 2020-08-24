@@ -40,3 +40,5 @@ function convertFromTo10(n, baseFrom) {
     return n;
 
 }
+
+export { convertFrom10To, convertFromTo10 };
