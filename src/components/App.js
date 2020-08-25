@@ -18,6 +18,8 @@ class App extends Component {
         //Bind 'this' to the component instance inside event handlers
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNumberChange = this.handleNumberChange.bind(this);
+        this.handleOptionChange = this.handleOptionChange.bind(this);
+        this.handleTextareaChange = this.handleTextareaChange.bind(this);
     }
 
     //submit event handler
@@ -29,9 +31,21 @@ class App extends Component {
     }
 
     //input number event handler
-    handleNumberChange(e) {
-        const number = e.target.value;
+    handleNumberChange({ target: { value: number } }) {
         this.setState({ number });
+    }
+
+    //input radio converter option handler
+    handleOptionChange({ target: { value: base } }) {
+        let baseFrom, baseTo;
+        baseFrom = base === '10' ? 10 : 2;
+        baseTo = base === '10' ? 2 : 10;
+        console.log(baseFrom, baseTo);
+        this.setState({ baseFrom, baseTo });
+    }
+
+    handleTextareaChange() {
+
     }
 
     render() {
@@ -41,16 +55,16 @@ class App extends Component {
                     {/* Number Input */}
                     <input onChange={this.handleNumberChange} type="number" name="number" id="number" />
                     {/* Converter Options */}
-                    <fieldset>
-                        <input checked type="radio" name="base" id="base2" />
+                    <fieldset onChange={this.handleOptionChange}>
+                        <input value={2} defaultChecked={true} type="radio" name="base" id="base2" />
                         <label htmlFor="base2">From base 2 to base 10</label><br />
-                        <input type="radio" name="base" id="base10" />
+                        <input value={10} type="radio" name="base" id="base10" />
                         <label htmlFor="base10">From base 10 to base 2</label><br />
                     </fieldset>
                     {/* Submit Button */}
                     <input type="submit" value="convert" /><br />
                     {/* Converter Result */}
-                    <textarea name="result" id="" cols="30" rows="5" value={this.state.result}></textarea><br />
+                    <textarea onChange={this.handleTextareaChange} name="result" id="" cols="30" rows="5" value={this.state.result}></textarea><br />
                     {/* Copy Button */}
                     <button>copy</button>
                 </form>
