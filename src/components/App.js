@@ -13,7 +13,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 0,
+            number: '',
             baseFrom: 2,
             baseTo: 10,
             result: ''
@@ -36,6 +36,8 @@ class App extends Component {
 
     //input number event handler
     handleNumberChange({ target: { value: number } }) {
+        //Be sure that only number will update the state
+        if (isNaN(number)) return;
         this.setState({ number });
     }
 
@@ -61,7 +63,7 @@ class App extends Component {
         return (
             <div>
                 <ConverterForm handleSubmit={this.handleSubmit}>
-                    <NumberInput handleNumberChange={this.handleNumberChange} />
+                    <NumberInput value={this.state.number} handleNumberChange={this.handleNumberChange} />
                     <ConverterOptions handleOptionChange={this.handleOptionChange} />
                     <input type="submit" value="convert" /><br />
                     <ConverterResult result={this.state.result} handleCopy={this.handleCopy} handleTextareaChange={this.handleTextareaChange} />

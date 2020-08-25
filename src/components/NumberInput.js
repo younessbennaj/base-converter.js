@@ -1,8 +1,8 @@
 import React from 'react';
 
-const NumberInput = ({ handleNumberChange }) => {
+const NumberInput = ({ handleNumberChange, value }) => {
     return (
-        <input onChange={handleNumberChange} type="number" name="number" id="number" />
+        <input value={value} onChange={handleNumberChange} name="number" id="number" />
     );
 }
 
