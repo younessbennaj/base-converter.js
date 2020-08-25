@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
-//utils 
+//utils
 import { convertFrom10To, convertFromTo10 } from '../utils/base10Converter';
 
-//components 
-import Hello from './Hello';
+//components
+import ConverterForm from './ConvertForm';
+import NumberInput from './NumberInput';
+import ConverterOptions from './ConverterOptions';
+import ConverterResult from './ConverterResult';
 
 class App extends Component {
     constructor(props) {
@@ -57,23 +60,12 @@ class App extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    {/* Number Input */}
-                    <input onChange={this.handleNumberChange} type="number" name="number" id="number" />
-                    {/* Converter Options */}
-                    <fieldset onChange={this.handleOptionChange}>
-                        <input value={2} defaultChecked={true} type="radio" name="base" id="base2" />
-                        <label htmlFor="base2">From base 2 to base 10</label><br />
-                        <input value={10} type="radio" name="base" id="base10" />
-                        <label htmlFor="base10">From base 10 to base 2</label><br />
-                    </fieldset>
-                    {/* Submit Button */}
+                <ConverterForm handleSubmit={this.handleSubmit}>
+                    <NumberInput handleNumberChange={this.handleNumberChange} />
+                    <ConverterOptions handleOptionChange={this.handleOptionChange} />
                     <input type="submit" value="convert" /><br />
-                    {/* Converter Result */}
-                    <textarea onChange={this.handleTextareaChange} name="result" id="" cols="30" rows="5" value={this.state.result}></textarea><br />
-                    {/* Copy Button */}
-                    <button onClick={this.handleCopy}>copy</button>
-                </form>
+                    <ConverterResult result={this.state.result} handleCopy={this.handleCopy} handleTextareaChange={this.handleTextareaChange} />
+                </ConverterForm>
             </div>
         );
     }
