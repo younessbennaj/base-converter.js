@@ -5,5 +5,5 @@ test('convert 45 to base 2', () => {
 });
 
 test('convert 101101 to base 10', () => {
-    expect(convertFromTo10(101101, 2)).toBe(45);
+    expect(convertFromTo10(101101, 2)).toBe('45');
 });

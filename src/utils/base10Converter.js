@@ -37,7 +37,7 @@ function convertFromTo10(n, baseFrom) {
         return accumulator + current;
     })
 
-    return n;
+    return n.toString();
 
 }
 
