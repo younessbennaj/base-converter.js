@@ -9,12 +9,26 @@ module.exports = {
         path: path.resolve(__dirname, "dist"), // string
         filename: "bundle.js"
     },
+    watch: true,
+    watchOptions: {
+        ignored: /node_modules/
+    },
     module: {
         rules: [
+            {
+                //files that end with ".js"
+                test: /\.js$/,
+                //except in the node_modules directory
+                exclude: /node_modules/,
+                //Use babel loader to process them 
+                use: "babel-loader"
+            },
+            //Rule for test files 
             {
                 use: {
                     loader: "babel-loader",
                     options: {
+                        //convert es module into commonJS module (needed for Jest)
                         plugins: ["@babel/plugin-transform-modules-commonjs"]
                     }
                 },
