@@ -10,13 +10,14 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 4,
+            number: 0,
             baseFrom: 2,
             baseTo: 10,
             result: ''
         }
         //Bind 'this' to the component instance inside event handlers
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNumberChange = this.handleNumberChange.bind(this);
     }
 
     //submit event handler
@@ -27,12 +28,18 @@ class App extends Component {
         this.setState({ result });
     }
 
+    //input number event handler
+    handleNumberChange(e) {
+        const number = e.target.value;
+        this.setState({ number });
+    }
+
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     {/* Number Input */}
-                    <input value={this.state.number} type="number" name="number" id="number" />
+                    <input onChange={this.handleNumberChange} type="number" name="number" id="number" />
                     {/* Converter Options */}
                     <fieldset>
                         <input checked type="radio" name="base" id="base2" />
