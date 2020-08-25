@@ -63,7 +63,7 @@ class App extends Component {
         return (
             <div>
                 <ConverterForm handleSubmit={this.handleSubmit}>
-                    <NumberInput value={this.state.number} handleNumberChange={this.handleNumberChange} />
+                    <NumberInput value={this.state.number} handleNumberChange={this.handleNumberChange}>Number:</NumberInput>
                     <ConverterOptions handleOptionChange={this.handleOptionChange} />
                     <input type="submit" value="convert" /><br />
                     <ConverterResult result={this.state.result} handleCopy={this.handleCopy} handleTextareaChange={this.handleTextareaChange} />
