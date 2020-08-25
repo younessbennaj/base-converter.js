@@ -20,6 +20,7 @@ class App extends Component {
         this.handleNumberChange = this.handleNumberChange.bind(this);
         this.handleOptionChange = this.handleOptionChange.bind(this);
         this.handleTextareaChange = this.handleTextareaChange.bind(this);
+        this.handleCopy = this.handleCopy.bind(this);
     }
 
     //submit event handler
@@ -43,7 +44,13 @@ class App extends Component {
         this.setState({ baseFrom, baseTo });
     }
 
-    handleTextareaChange() {
+    //Copy the textarea content 
+    handleCopy(e) {
+        const { result } = this.state
+        navigator.clipboard.writeText(result);
+    }
+
+    handleTextareaChange(e) {
 
     }
 
@@ -65,7 +72,7 @@ class App extends Component {
                     {/* Converter Result */}
                     <textarea onChange={this.handleTextareaChange} name="result" id="" cols="30" rows="5" value={this.state.result}></textarea><br />
                     {/* Copy Button */}
-                    <button>copy</button>
+                    <button onClick={this.handleCopy}>copy</button>
                 </form>
             </div>
         );
