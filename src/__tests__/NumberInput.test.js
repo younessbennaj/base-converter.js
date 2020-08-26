@@ -1,8 +1,10 @@
 import React from 'react';
 import { unmountComponentAtNode } from "react-dom";
 import { render, screen, fireEvent } from '@testing-library/react';
+//mimics the actual browser behavior
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-import NumberInput from '../components/NumberInput';
+import App from '../components/App';
 
 let input = null;
 
@@ -13,12 +15,12 @@ beforeEach(() => {
     //output the NumberInput input html in the console
     // screen.debug();
 
-    //Provide our own HTMLElement container as input should be inside of a <form /> element
-    const form = document.createElement("form");
-    //render the number input componenet
-    render(<NumberInput>Number:</NumberInput>, { container: document.body.appendChild(form) });
+    //Provide our own HTMLElement container
+    const container = document.createElement("div");
+    //render the App
+    render(<App />);
 
-    input = screen.getByRole('textbox');
+    input = screen.queryByLabelText('Number:');
 })
 
 afterEach(() => {
@@ -44,12 +46,10 @@ describe('Number input component', () => {
     test('Input element is correctly displayed', () => {
 
         //Search element with the role "textbox"
-        expect(screen.getByRole('textbox')).toBeInTheDocument();
+        expect(screen.getByLabelText('Number:')).toBeInTheDocument();
     })
 
     test('User should enter a number', () => {
-
-        //const input = screen.getByRole('textbox');
 
         fireEvent.change(input, {
             target: { value: '45' },
@@ -60,9 +60,11 @@ describe('Number input component', () => {
 
     test('User shouldn\'t enter a string', () => {
 
-        fireEvent.change(input, {
-            target: { value: 'hello' },
-        })
+        screen.debug(input);
+
+        userEvent.type(input, 'hello');
+
+        screen.debug(input);
 
         expect(input.value).toBe('');
 
