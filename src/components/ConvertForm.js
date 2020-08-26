@@ -2,7 +2,7 @@ import React from 'react';
 
 const ConverterForm = ({ children, handleSubmit }) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form aria-label="form" onSubmit={handleSubmit}>
             {children}
         </form>
     );

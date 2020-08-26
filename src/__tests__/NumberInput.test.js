@@ -60,11 +60,7 @@ describe('Number input component', () => {
 
     test('User shouldn\'t enter a string', () => {
 
-        screen.debug(input);
-
         userEvent.type(input, 'hello');
-
-        screen.debug(input);
 
         expect(input.value).toBe('');
 
