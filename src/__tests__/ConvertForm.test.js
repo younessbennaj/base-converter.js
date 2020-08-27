@@ -7,7 +7,7 @@ import App from '../components/App';
 // utils
 import { convertFromTo10 } from '../utils/base10Converter';
 
-let form, group, numberInput, submit;
+let form, group, numberInput, submit, result, copy;
 
 beforeEach(() => {
 
@@ -20,11 +20,21 @@ beforeEach(() => {
 
     numberInput = screen.queryByLabelText('Number:');
 
+    //submit button
     submit = screen.getByRole('button', { name: /submit/i });
 
+    //result textarea
     result = screen.getByRole('textbox', { name: /result:/i });
 
+    //copy button to copy the result in the clipboard 
+    copy = screen.getByRole('button', { name: /copy/i });
+
+    navigator.clipboard = {
+        writeText: jest.fn()
+    };
 })
+
+
 
 describe('Converter form', () => {
     // test suite block
@@ -56,4 +66,22 @@ describe('Converter form', () => {
         //We should return a value inside the result textarea 
         expect(result.value).toBe(convertFromTo10(numberInput.value, 2));
     })
+
+    test('Veriry if the copy button works well', () => {
+
+        //User type a number
+        userEvent.type(numberInput,
+            '100010101'
+        );
+
+        //User click on the submit button 
+        userEvent.click(submit);
+
+        //User click on the copy button 
+        userEvent.click(copy);
+
+        //Very that the writeText() method is called when the user click
+        expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
+    });
+
 })
