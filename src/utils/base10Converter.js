@@ -60,4 +60,4 @@ function convertFrom10To216(n) {
 
 }
 
-export { convertFrom10To2, convertFrom2To10 };
+export { convertFrom10To2, convertFrom2To10, convertFrom10To216 };
