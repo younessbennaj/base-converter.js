@@ -61,11 +61,11 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="converter">
                 <ConverterForm handleSubmit={this.handleSubmit}>
                     <NumberInput value={this.state.number} handleNumberChange={this.handleNumberChange}>Number:</NumberInput>
                     <ConverterOptions handleOptionChange={this.handleOptionChange} />
-                    <input type="submit" value="convert" /><br />
+                    <input className="btn" type="submit" value="convert" /><br />
                     <ConverterResult result={this.state.result} handleCopy={this.handleCopy} handleTextareaChange={this.handleTextareaChange} />
                 </ConverterForm>
             </div>
