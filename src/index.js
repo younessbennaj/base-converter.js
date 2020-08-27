@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 
-//utils
-import sum from './utils/sum';
-import { convertFrom10To, convertFromTo10 } from './utils/base10Converter';
-
 //components 
 import App from './components/App';
 
-// export default App;
+//style
+import css from './style/index.scss';
 
 const root = document.getElementById("root")
 

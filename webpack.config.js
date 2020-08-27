@@ -32,7 +32,13 @@ module.exports = {
                         plugins: ["@babel/plugin-transform-modules-commonjs"]
                     }
                 },
-                test: "/\.test.js/$"
+                test: /\.test.js$/
+            },
+            //Rule for scss file => compile to css
+            {
+                //loaders used from right to left !
+                use: ["style-loader", "css-loader", "sass-loader"],
+                test: /\.scss$/,
             }
         ]
     }
