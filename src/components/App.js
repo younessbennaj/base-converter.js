@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //utils
-import { convertFrom10To, convertFromTo10 } from '../utils/base10Converter';
+import { convert } from '../utils/base10Converter';
 
 //components
 import ConverterForm from './ConvertForm';
@@ -16,6 +16,7 @@ class App extends Component {
             number: '',
             baseFrom: 2,
             baseTo: 10,
+            base: { from: 2, to: 10 },
             result: ''
         }
         //Bind 'this' to the component instance inside event handlers
@@ -28,9 +29,9 @@ class App extends Component {
 
     //submit event handler
     handleSubmit(e) {
-        const { number, baseFrom, baseTo } = this.state;
+        const { number, base } = this.state;
         e.preventDefault();
-        const result = baseFrom === 2 ? convertFromTo10(number, baseFrom) : convertFrom10To(number, baseTo);
+        const result = convert(number, base.from, base.to);
         this.setState({ result });
     }
 
@@ -42,11 +43,9 @@ class App extends Component {
     }
 
     //input radio converter option handler
-    handleOptionChange({ target: { value: base } }) {
-        let baseFrom, baseTo;
-        baseFrom = base === '10' ? 10 : 2;
-        baseTo = base === '10' ? 2 : 10;
-        this.setState({ baseFrom, baseTo });
+    handleOptionChange(e) {
+        let base = JSON.parse(e.target.value);
+        this.setState({ base })
     }
 
     //Copy the textarea content 
