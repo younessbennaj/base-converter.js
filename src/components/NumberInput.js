@@ -1,8 +1,11 @@
 import React from 'react';
 
-const NumberInput = ({ handleNumberChange }) => {
+const NumberInput = ({ handleNumberChange, value, children }) => {
     return (
-        <input onChange={handleNumberChange} type="number" name="number" id="number" />
+        <>
+            <label htmlFor="number" htmlFor="number">{children}</label><br />
+            <input value={value} onChange={handleNumberChange} name="number" id="number" />
+        </>
     );
 }
 
