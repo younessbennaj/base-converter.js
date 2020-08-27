@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //utils
-import { convertFrom10To, convertFromTo10 } from '../utils/base10Converter';
+import { convertFrom10To2, convertFrom2To10 } from '../utils/base10Converter';
 
 //components
 import ConverterForm from './ConvertForm';
@@ -30,7 +30,7 @@ class App extends Component {
     handleSubmit(e) {
         const { number, baseFrom, baseTo } = this.state;
         e.preventDefault();
-        const result = baseFrom === 2 ? convertFromTo10(number, baseFrom) : convertFrom10To(number, baseTo);
+        const result = baseFrom === 2 ? convertFrom2To10(number, baseFrom) : convertFrom10To2(number, baseTo);
         this.setState({ result });
     }
 
